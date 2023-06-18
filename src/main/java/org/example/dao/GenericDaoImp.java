@@ -1,5 +1,8 @@
 package org.example.dao;
 
+import jakarta.ejb.Stateful;
+import jakarta.ejb.Stateless;
+import org.example.models.User;
 import org.example.utils.JpaFactory;
 
 import javax.persistence.EntityManager;
@@ -12,6 +15,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
+//@Stateless
 public class GenericDaoImp<T,K> implements GenericDao<T,K> {
     private final Class<T> type;
 
@@ -38,6 +42,12 @@ public class GenericDaoImp<T,K> implements GenericDao<T,K> {
         em.remove(t);
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Override
+    public void remove(K id) {
+        EntityManager em = getEntityManager();
+        em.remove(em.getReference(User.class, id));
     }
 
     @Override
