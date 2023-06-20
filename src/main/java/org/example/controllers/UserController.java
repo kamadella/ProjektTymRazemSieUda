@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.dao.UserDao;
+import org.example.dao.UserDaoImp;
 import org.example.models.User;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class UserController extends HttpServlet {
     private final Logger log = Logger.getLogger(UserController.class.getName());
 
     @EJB
-    private UserDao dao;
+    private UserDaoImp dao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -93,7 +94,7 @@ public class UserController extends HttpServlet {
         }
 
         b.setId(id);
-        dao.save(b);
+        dao.saveOrUpdate(b);
 
         // po udanej konwersji/walidacji i zapisie obiektu użytkownik jest przekierowywany (przez HTTP Redirect) na stronę z listą książek
         response.sendRedirect(request.getContextPath() + "/user/list");

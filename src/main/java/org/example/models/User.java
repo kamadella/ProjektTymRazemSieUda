@@ -1,9 +1,15 @@
 package org.example.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User extends AbstractModel{
+@Entity
+@NamedQuery(name = "User.findAll", query = "select b from User b")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     private String login;
     private String password;
     private String email;
@@ -13,6 +19,14 @@ public class User extends AbstractModel{
         this.login = login;
         this.password = password;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLogin() {

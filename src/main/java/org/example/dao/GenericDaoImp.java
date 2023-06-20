@@ -6,6 +6,7 @@ import org.example.models.User;
 import org.example.utils.JpaFactory;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,8 +16,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-//@Stateless
+
 public class GenericDaoImp<T,K> implements GenericDao<T,K> {
+
     private final Class<T> type;
 
     public GenericDaoImp() {

@@ -5,16 +5,13 @@
 
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="DAO" >
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <persistence-unit name="PU" transaction-type="JTA">
+        <jta-data-source>java:global/ProjectDataSource</jta-data-source>
         <class>org.example.models.Admin</class>
         <class>org.example.models.Category</class>
         <class>org.example.models.User</class>
         <class>org.example.models.Advertise</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./h2data;DB_CLOSE_DELAY=-1"/>
-            <property name="javax.persistence.jdbc.user" value="sa"/>
-            <property name="javax.persistence.jdbc.password" value="sa"/>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
         </properties>
